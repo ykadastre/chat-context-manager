@@ -12,7 +12,7 @@ injectUI(platform);
 // Function to identify the current AI chat platform
 function identifyPlatform() {
   const url = window.location.href;
-  if (url.includes('chat.openai.com')) return 'chatgpt';
+  if (url.includes('chatgpt.com')) return 'chatgpt';
   if (url.includes('claude.ai')) return 'claude';
   if (url.includes('bard.google.com')) return 'bard';
   return 'unknown';
@@ -24,11 +24,11 @@ function setupMessageCapturing(platform) {
   switch (platform) {
     case 'chatgpt':
       // For ChatGPT
-      observeDOMChanges('.markdown');
+      observeDOMChanges('.text-message');
       break;
     case 'claude':
       // For Claude
-      observeDOMChanges('.claude-msg');
+      observeDOMChanges('.font-claude-message');
       break;
     case 'bard':
       // For Bard
@@ -79,10 +79,10 @@ function extractMessages(platform) {
   
   switch (platform) {
     case 'chatgpt':
-      messageElements = document.querySelectorAll('.group');
+      messageElements = document.querySelectorAll('article');
       break;
     case 'claude':
-      messageElements = document.querySelectorAll('.message');
+      messageElements = document.querySelectorAll('.group');
       break;
     case 'bard':
       messageElements = document.querySelectorAll('.conversation-message');
@@ -113,7 +113,7 @@ function extractMessages(platform) {
 function determineIfUserMessage(element, platform) {
   switch (platform) {
     case 'chatgpt':
-      return !element.classList.contains('assistant');
+      return element.querySelector('[data-message-author-role="user"]') !== null;
     case 'claude':
       return element.classList.contains('user-message');
     case 'bard':
@@ -127,10 +127,10 @@ function determineIfUserMessage(element, platform) {
 function extractMessageContent(element, platform) {
   switch (platform) {
     case 'chatgpt':
-      const markdown = element.querySelector('.markdown');
+      const markdown = element.querySelector('.whitespace-pre-wrap, .markdown');
       return markdown ? markdown.textContent.trim() : '';
     case 'claude':
-      const msgContent = element.querySelector('.message-content');
+      const msgContent = element.querySelector('.whitespace-pre-wrap');
       return msgContent ? msgContent.textContent.trim() : '';
     case 'bard':
       const responseContent = element.querySelector('.response-content');

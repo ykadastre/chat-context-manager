@@ -5,7 +5,7 @@
   "description": "Create and manage AI conversation context files for chat continuity",
   "permissions": ["storage", "tabs", "scripting"],
   "host_permissions": [
-    "https://chat.openai.com/*",
+    "https://chatgpt.com/c/*",
     "https://claude.ai/*",
     "https://bard.google.com/*"
   ],
@@ -23,7 +23,7 @@
   "content_scripts": [
     {
       "matches": [
-        "https://chat.openai.com/*",
+        "https://chatgpt.com/c/*",
         "https://claude.ai/*",
         "https://bard.google.com/*"
       ],
