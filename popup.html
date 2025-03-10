@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Context Manager</title>
+  <style>
+    body {
+      width: 400px;
+      font-family: Arial, sans-serif;
+      padding: 15px;
+    }
+    
+    h1 {
+      font-size: 18px;
+      color: #333;
+      margin-top: 0;
+    }
+    
+    .section {
+      margin-bottom: 20px;
+    }
+    
+    .context-list {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+    }
+    
+    .context-item {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+    
+    .context-item:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .context-item:last-child {
+      border-bottom: none;
+    }
+    
+    .context-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      background-color: #5540af;
+      color: white;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #4530a0;
+    }
+    
+    button.secondary {
+      background-color: #6c757d;
+    }
+    
+    button.danger {
+      background-color: #dc3545;
+    }
+    
+    .empty-state {
+      padding: 20px;
+      text-align: center;
+      color: #666;
+    }
+    
+    .file-input-wrapper {
+      margin-bottom: 10px;
+    }
+    
+    #import-context {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Chat Context Manager</h1>
+  
+  <div class="section">
+    <h2>Saved Contexts</h2>
+    <div class="context-list" id="context-list">
+      <div class="empty-state">No saved contexts yet</div>
+    </div>
+  </div>
+  
+  <div class="section">
+    <h2>Import Context</h2>
+    <div class="file-input-wrapper">
+      <input type="file" id="import-context" accept=".json" />
+    </div>
+    <button id="import-button">Import</button>
+  </div>
+  
+  <div class="section">
+    <h2>Current Conversation</h2>
+    <div class="context-actions">
+      <button id="capture-button">Capture Current Chat</button>
+      <button id="clear-button" class="danger">Clear Data</button>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
